@@ -19,11 +19,11 @@ def create_app():
     login_manager.init_app(app)
     migrate.init_app(app, db)
     
-    # Login manager settings
-    login_manager.login_view = 'login'
+    # Login manager settings - FIX: Use routes.login instead of just login
+    login_manager.login_view = 'routes.login'  # Changed from 'login' to 'routes.login'
     login_manager.login_message_category = 'info'
     
-    # Register blueprints (we'll use direct routes for simplicity)
+    # Register blueprints
     from app import routes
     app.register_blueprint(routes.routes)
     
