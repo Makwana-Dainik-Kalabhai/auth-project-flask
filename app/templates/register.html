@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="text-center">
+        <div class="brand-icon">
+            <i class="fas fa-user-plus"></i>
+        </div>
+        <h2>Create Account</h2>
+        <p class="subtitle">Join us today</p>
+    </div>
+    
+    <form method="POST" action="{{ url_for('routes.register') }}">
+        {{ form.hidden_tag() }}
+        
+        <div class="mb-3">
+            {{ form.username.label(class="form-label fw-bold") }}
+            {{ form.username(class="form-control", placeholder="Choose a username") }}
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.email.label(class="form-label fw-bold") }}
+            {{ form.email(class="form-control", placeholder="Enter your email") }}
+            {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.password.label(class="form-label fw-bold") }}
+            {{ form.password(class="form-control", placeholder="Create a password") }}
+            <small class="text-muted">Password must be at least 6 characters</small>
+            {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.confirm_password.label(class="form-label fw-bold") }}
+            {{ form.confirm_password(class="form-control", placeholder="Confirm your password") }}
+            {% if form.confirm_password.errors %}
+                {% for error in form.confirm_password.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        {{ form.submit(class="btn btn-primary w-100") }}
+    </form>
+    
+    <div class="text-center mt-4">
+        <p class="mb-0">Already have an account? <a href="{{ url_for('routes.login') }}" class="auth-link">Sign In</a></p>
+    </div>
+</div>
+{% endblock %}
