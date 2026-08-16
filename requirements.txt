@@ -8,3 +8,4 @@ Werkzeug==2.3.6
 email-validator==2.0.0
 python-dotenv==1.0.0
 itsdangerous==2.1.2
+gunicorn==26.0.0
